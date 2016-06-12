@@ -1,0 +1,27 @@
+count=0
+incount=0
+for n in `find ~/project -type d`
+do
+    if [ $count -eq 0 ]
+    then
+        count=$((count + 1))
+    else
+        temp=${n:2}
+        incount=0
+        for te in `find $n`
+        do
+            if [ $incount -eq 0 ]
+            then
+                #echo "$temp"
+                incount=$((incount + 1))
+            else
+                le=`expr ${#temp} + 3`
+                echo $te
+                tem=${te:le}
+                #echo $tem
+                #echo ~/public_html/$temp/$tem
+                cp -R $te ~/public_html/$temp/$tem 
+            fi
+        done
+    fi
+done
