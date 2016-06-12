@@ -1,0 +1,24 @@
+count=0
+incount=0
+for n in `find ./ -type d`
+do
+    if [ $count -eq 0 ]
+    then
+        count=$((count + 1))
+    else
+        temp=${n:2}
+        echo $temp
+        incount=0
+        for te in `find $n`
+        do
+            if [ $incount -eq 0 ]
+            then
+                incount=$((incount + 1))
+            else
+                le=`expr ${#te} - 10 + 3`
+                tem=${te:le}
+                echo " $tem"
+            fi
+        done
+    fi
+done
